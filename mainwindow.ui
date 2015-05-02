@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>574</width>
-    <height>530</height>
+    <width>657</width>
+    <height>624</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,15 +15,35 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="9" column="1">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>NaikSoftware (c) 2015</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="3" colspan="3">
+    <item row="6" column="2" colspan="3">
      <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Загальне</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_DDNF">
+        <property name="text">
+         <string>ДДНФ</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_DKNF">
+        <property name="text">
+         <string>ДКНФ</string>
+        </property>
+       </widget>
+      </item>
       <item>
        <widget class="QLabel" name="label_2">
         <property name="font">
@@ -38,16 +58,16 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="btn_BlakePor">
         <property name="text">
-         <string>Метод Нельсона</string>
+         <string>Метод Блейка-Порецького</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="btn_Nelson">
         <property name="text">
-         <string>Метод Блейка-Порецького</string>
+         <string>Метод Нельсона</string>
         </property>
        </widget>
       </item>
@@ -66,8 +86,18 @@
       </item>
      </layout>
     </item>
-    <item row="0" column="1" rowspan="2">
+    <item row="0" column="0" rowspan="2">
      <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QRadioButton" name="radioButton_table">
+        <property name="text">
+         <string>Таблиця</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
       <item>
        <spacer name="horizontalSpacer_2">
         <property name="orientation">
@@ -117,7 +147,40 @@
       </item>
      </layout>
     </item>
-    <item row="6" column="0" colspan="2">
+    <item row="9" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>NaikSoftware (c) 2015</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QRadioButton" name="radioButton_func">
+        <property name="text">
+         <string>Функція</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit"/>
+      </item>
+     </layout>
+    </item>
+    <item row="7" column="2">
+     <widget class="QToolButton" name="toolButton">
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset theme="help">
+        <normaloff/>
+       </iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
      <widget class="QTableWidget" name="tableWidget"/>
     </item>
    </layout>
@@ -127,7 +190,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>574</width>
+     <width>657</width>
      <height>27</height>
     </rect>
    </property>

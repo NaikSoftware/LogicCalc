@@ -11,10 +11,18 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = LogicCalc
 TEMPLATE = app
 
+CONFIG += c++11
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    spinboxdelegate.cpp \
+    logicfunction.cpp \
+    dialogshowfunc.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    spinboxdelegate.h \
+    logicfunction.h \
+    dialogshowfunc.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    dialogshowfunc.ui
