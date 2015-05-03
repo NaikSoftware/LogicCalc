@@ -88,20 +88,45 @@ void MainWindow::on_radioButton_table_toggled(bool checked)
 // Диз’юнктивна довершена нормальна форма
 void MainWindow::on_btn_DDNF_clicked()
 {
-    Expr rootExpr(SUMM);
+    Expr rootExpr = getFuncFromTable();
+    LogicFunction func(&rootExpr);
+    QString title = QString(tr("ДДНФ"));
+    DialogShowFunc *dial = new DialogShowFunc(title, &func, this);
+    dial->show();
+}
 
+// Кон’юнктивна довершена нормальна форма
+void MainWindow::on_btn_DKNF_clicked()
+{
+    Expr rootExpr = getFuncFromTable(1);
+    LogicFunction func(&rootExpr);
+    QString title = QString(tr("ДКНФ"));
+    DialogShowFunc *dial = new DialogShowFunc(title, &func, this);
+    dial->show();
+}
+
+/**
+ * @brief MainWindow::getFuncFromTable
+ * @param type 0 - DDNF, 1 - DKNF, default 0
+ * @return logic function expression
+ */
+Expr MainWindow::getFuncFromTable(int type)
+{
+    Expr rootExpr(type?MULT:SUMM);
+
+    int v;
     for (int i = 0;i < table_rows;i++) {
-        if (table->item(i, table_size)->text().toInt() == 0) continue;
-        Expr expr(MULT);
+        v = table->item(i, table_size)->text().toInt();
+        if (v == 0 && type == 0) continue;
+        else if (v == 1 && type == 1) continue;
+        Expr expr(type?SUMM:MULT);
         for (int j = 0;j < table_size;j++) {
-            Expr atomExpr(ATOM, table->item(i, j)->text().toInt() ? false : true, j + 1);
+            v = table->item(i, j)->text().toInt();
+            Expr atomExpr(ATOM, v ? (type?true:false) : (type?false:true), j + 1);
             expr.addChild(atomExpr);
         }
         rootExpr.addChild(expr);
     }
 
-    LogicFunction func(&rootExpr);
-    QString title = QString(tr("ДДНФ"));
-    DialogShowFunc *dial = new DialogShowFunc(title, &func, this);
-    dial->show();
+    return rootExpr;
 }

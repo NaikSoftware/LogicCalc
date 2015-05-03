@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTableWidget>
 #include "spinboxdelegate.h"
+#include "logicfunction.h"
 
 #define MAX_TABLE_SIZE 6
 #define MIN_TABLE_SIZE 2
@@ -30,6 +31,10 @@ private slots:
     void on_radioButton_table_toggled(bool checked);
 
     void on_btn_DDNF_clicked();
+
+    Expr getFuncFromTable(int type = 0);
+
+    void on_btn_DKNF_clicked();
 
 private:
     Ui::MainWindow *ui;
