@@ -1,5 +1,5 @@
 #include "funcinputvalidator.h"
-#include "logicfunction.h"
+#include "expr.h"
 
 FuncInputValidator::FuncInputValidator(QObject *parent) :
     QValidator(parent)

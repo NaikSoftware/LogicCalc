@@ -1,21 +1,4 @@
-#include "logicfunction.h"
-
-LogicFunction::LogicFunction(Expr *_rootExpr)
-    : rootExpr(_rootExpr)
-{}
-
-QString LogicFunction::getText() {
-    QString text;
-    rootExpr->print(text);
-    return text;
-}
-
-LogicFunction::~LogicFunction()
-{
-    delete rootExpr;
-}
-
-//*************************
+#include "expr.h"
 
 Expr::Expr()
 {

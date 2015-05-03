@@ -91,9 +91,8 @@ void MainWindow::on_radioButton_table_toggled(bool checked)
 void MainWindow::on_btn_DDNF_clicked()
 {
     Expr *rootExpr = getFuncFromTable();
-    LogicFunction *func = new LogicFunction(rootExpr);
     QString title = QString(tr("ДДНФ"));
-    DialogShowFunc *dial = new DialogShowFunc(title, func, this);
+    DialogShowFunc *dial = new DialogShowFunc(title, rootExpr, this);
     dial->show();
 }
 
@@ -101,9 +100,8 @@ void MainWindow::on_btn_DDNF_clicked()
 void MainWindow::on_btn_DKNF_clicked()
 {
     Expr *rootExpr = getFuncFromTable(1);
-    LogicFunction *func = new LogicFunction(rootExpr);
     QString title = QString(tr("ДКНФ"));
-    DialogShowFunc *dial = new DialogShowFunc(title, func, this);
+    DialogShowFunc *dial = new DialogShowFunc(title, rootExpr, this);
     dial->show();
 }
 
@@ -146,8 +144,7 @@ Expr *MainWindow::getFuncFromText()
 void MainWindow::on_btn_Nelson_clicked()
 {
     Expr *rootExpr  = ui->radioButton_table->isChecked() ? getFuncFromTable() : getFuncFromText();
-    LogicFunction *func = new LogicFunction(rootExpr);
     QString title = QString(tr("СкДНФ з ДНФ"));
-    DialogShowFunc *dial = new DialogShowFunc(title, func, this);
+    DialogShowFunc *dial = new DialogShowFunc(title, rootExpr, this);
     dial->show();
 }

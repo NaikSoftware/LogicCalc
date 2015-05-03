@@ -2,14 +2,16 @@
 #include "ui_dialogshowfunc.h"
 #include <QDebug>
 
-DialogShowFunc::DialogShowFunc(QString &title, LogicFunction *func, QWidget *parent) :
+DialogShowFunc::DialogShowFunc(QString &title, Expr *_rootExpr, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::DialogShowFunc)
+    ui(new Ui::DialogShowFunc),
+    rootExpr(_rootExpr)
 {
     ui->setupUi(this);
     ui->labelTitle->setText(title);
-    ui->textBrowser->setText(func->getText());
-    logicFunc = func;
+    QString text;
+    rootExpr->print(text);
+    ui->textBrowser->setText(text);
 }
 
 DialogShowFunc::~DialogShowFunc()
@@ -24,5 +26,5 @@ void DialogShowFunc::on_btnThanks_clicked()
 
 void DialogShowFunc::on_DialogShowFunc_finished(int result)
 {
-    delete logicFunc;
+    delete rootExpr;
 }

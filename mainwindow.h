@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QTableWidget>
 #include "spinboxdelegate.h"
-#include "logicfunction.h"
+#include "expr.h"
 
 #define MAX_TABLE_SIZE 6
 #define MIN_TABLE_SIZE 2

@@ -1,5 +1,5 @@
-#ifndef LOGICFUNCTION_H
-#define LOGICFUNCTION_H
+#ifndef EXPR_H
+#define EXPR_H
 
 #include <QVector>
 #include <QString>
@@ -32,18 +32,4 @@ private:
     int var; // For ATOM type
 };
 
-class LogicFunction
-{
-public:
-    LogicFunction(Expr *rootExpr);
-
-    QString getText();
-
-    ~LogicFunction();
-
-
-private:
-    Expr *rootExpr;
-};
-
-#endif // LOGICFUNCTION_H
+#endif // EXPR_H

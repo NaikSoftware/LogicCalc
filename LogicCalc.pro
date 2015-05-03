@@ -16,15 +16,15 @@ CONFIG += c++11
 SOURCES += main.cpp\
         mainwindow.cpp \
     spinboxdelegate.cpp \
-    logicfunction.cpp \
     dialogshowfunc.cpp \
-    funcinputvalidator.cpp
+    funcinputvalidator.cpp \
+    expr.cpp
 
 HEADERS  += mainwindow.h \
     spinboxdelegate.h \
-    logicfunction.h \
     dialogshowfunc.h \
-    funcinputvalidator.h
+    funcinputvalidator.h \
+    expr.h
 
 FORMS    += mainwindow.ui \
     dialogshowfunc.ui
