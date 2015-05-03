@@ -13,7 +13,7 @@ class DialogShowFunc : public QDialog
     Q_OBJECT
 
 public:
-    explicit DialogShowFunc(QString title, LogicFunction func, QWidget *parent = 0);
+    explicit DialogShowFunc(QString &title, LogicFunction *func, QWidget *parent = 0);
     ~DialogShowFunc();
 
 private slots:
@@ -21,6 +21,7 @@ private slots:
 
 private:
     Ui::DialogShowFunc *ui;
+    LogicFunction *logicFunc;
 };
 
 #endif // DIALOGSHOWFUNC_H

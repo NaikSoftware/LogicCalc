@@ -72,6 +72,7 @@ void MainWindow::update_table(int size) {
     table->setHorizontalHeaderLabels(header);
     spinBoxDelegate->setEditColsAfter(size);
     table_size = size;
+    table_rows = rows;
 }
 
 void MainWindow::on_radioButton_table_toggled(bool checked)
@@ -87,7 +88,20 @@ void MainWindow::on_radioButton_table_toggled(bool checked)
 // Диз’юнктивна довершена нормальна форма
 void MainWindow::on_btn_DDNF_clicked()
 {
-    LogicFunction func;
-    DialogShowFunc *dial = new DialogShowFunc("ДДНФ", func, this);
+    Expr rootExpr(SUMM);
+
+    for (int i = 0;i < table_rows;i++) {
+        if (table->item(i, table_size)->text().toInt() == 0) continue;
+        Expr expr(MULT);
+        for (int j = 0;j < table_size;j++) {
+            Expr atomExpr(ATOM, table->item(i, j)->text().toInt() ? false : true, j + 1);
+            expr.addChild(atomExpr);
+        }
+        rootExpr.addChild(expr);
+    }
+
+    LogicFunction func(&rootExpr);
+    QString title = QString(tr("ДДНФ"));
+    DialogShowFunc *dial = new DialogShowFunc(title, &func, this);
     dial->show();
 }

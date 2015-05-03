@@ -14,7 +14,7 @@
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+   <item row="0" column="3">
     <widget class="QLabel" name="labelTitle">
      <property name="font">
       <font>
@@ -27,15 +27,49 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
+   <item row="1" column="3">
     <widget class="QTextBrowser" name="textBrowser"/>
    </item>
-   <item row="2" column="0">
-    <widget class="QPushButton" name="btnThanks">
-     <property name="text">
-      <string>Thanks</string>
+   <item row="3" column="3">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
      </property>
-    </widget>
+     <item>
+      <widget class="QPushButton" name="btnToX">
+       <property name="text">
+        <string>To X</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnToOOMath">
+       <property name="text">
+        <string>To OpenOffice Math</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnThanks">
+       <property name="text">
+        <string>Thanks</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

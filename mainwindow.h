@@ -34,6 +34,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     int table_size;
+    int table_rows;
     int func_count;
     QTableWidget *table;
     SpinBoxDelegate *spinBoxDelegate;

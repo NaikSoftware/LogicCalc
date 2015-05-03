@@ -2,22 +2,39 @@
 #define LOGICFUNCTION_H
 
 #include <QVector>
-#include <iostream>
+#include <QString>
+#include <QDebug>
 
 using std::ostream;
+
+enum ExprType {
+    MULT, SUMM, ATOM
+};
+
+class Expr
+{
+public:
+    Expr();
+    Expr(ExprType type, bool inverse = false, int var = 0);
+    void print(QString &text);
+    void addChild(Expr &expr);
+
+private:
+    ExprType type;
+    QVector<Expr> childs;
+    bool inverse;
+    int var; // For ATOM type
+};
 
 class LogicFunction
 {
 public:
-    LogicFunction();
+    LogicFunction(Expr *rootExpr);
 
-    friend ostream& operator << (ostream &out, LogicFunction lfunc) {
-        out << " test ";
-        return out;
-    }
+    QString getText();
 
 private:
-    QVector <int>vec;
+    Expr *rootExpr;
 };
 
 #endif // LOGICFUNCTION_H
