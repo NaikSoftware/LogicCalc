@@ -32,9 +32,12 @@ private slots:
 
     void on_btn_DDNF_clicked();
 
-    Expr getFuncFromTable(int type = 0);
+    Expr *getFuncFromTable(int type = 0);
+    Expr *getFuncFromText();
 
     void on_btn_DKNF_clicked();
+
+    void on_btn_Nelson_clicked();
 
 private:
     Ui::MainWindow *ui;

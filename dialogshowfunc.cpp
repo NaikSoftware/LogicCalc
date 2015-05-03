@@ -1,5 +1,6 @@
 #include "dialogshowfunc.h"
 #include "ui_dialogshowfunc.h"
+#include <QDebug>
 
 DialogShowFunc::DialogShowFunc(QString &title, LogicFunction *func, QWidget *parent) :
     QDialog(parent),
@@ -19,4 +20,9 @@ DialogShowFunc::~DialogShowFunc()
 void DialogShowFunc::on_btnThanks_clicked()
 {
     close();
+}
+
+void DialogShowFunc::on_DialogShowFunc_finished(int result)
+{
+    delete logicFunc;
 }

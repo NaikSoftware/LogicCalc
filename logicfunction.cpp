@@ -10,6 +10,13 @@ QString LogicFunction::getText() {
     return text;
 }
 
+LogicFunction::~LogicFunction()
+{
+    delete rootExpr;
+}
+
+//*************************
+
 Expr::Expr()
 {
     // Default constructor (needed for QVector)
@@ -21,8 +28,6 @@ Expr::Expr(ExprType _type, bool _inverse, int _var)
     type = _type;
     inverse = _inverse;
     var = _var;
-    //qDebug() << "Expr standart constructor type=" << type
-    //         << " inverse=" << inverse << " var=" << var;
 }
 
 void Expr::print(QString &text)
@@ -31,19 +36,24 @@ void Expr::print(QString &text)
     if (type == ATOM) {
         text += QString::number(var);
     } else {
-        if (type == SUMM) text += "(";
-        QString op(type == SUMM ? " + " : "·");
+        if (type == SUMM) text += STR_BRACKET_START;
+        QString op(type == SUMM ? QString(" ") + STR_SUMM + " " : STR_MULT);
         for (int i = 0, len = childs.size();i < len;i++) {
-            childs[i].print(text);
+            childs[i]->print(text);
             if (i < (len - 1)) text += op;
         }
-        if (type == SUMM) text += ")";
+        if (type == SUMM) text += STR_BRACKET_END;
     }
 }
 
-void Expr::addChild(Expr &expr)
+void Expr::addChild(Expr *expr)
 {
     childs.append(expr);
+}
+
+Expr::~Expr()
+{
+    for (Expr *e : childs) delete e;
 }
 
 

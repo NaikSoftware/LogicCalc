@@ -5,6 +5,11 @@
 #include <QString>
 #include <QDebug>
 
+#define STR_MULT "·"
+#define STR_SUMM "+"
+#define STR_BRACKET_START "("
+#define STR_BRACKET_END ")"
+
 using std::ostream;
 
 enum ExprType {
@@ -17,11 +22,12 @@ public:
     Expr();
     Expr(ExprType type, bool inverse = false, int var = 0);
     void print(QString &text);
-    void addChild(Expr &expr);
+    void addChild(Expr *expr);
+    ~Expr();
 
 private:
     ExprType type;
-    QVector<Expr> childs;
+    QVector<Expr*> childs;
     bool inverse;
     int var; // For ATOM type
 };
@@ -32,6 +38,9 @@ public:
     LogicFunction(Expr *rootExpr);
 
     QString getText();
+
+    ~LogicFunction();
+
 
 private:
     Expr *rootExpr;

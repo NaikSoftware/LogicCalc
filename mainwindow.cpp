@@ -7,6 +7,7 @@
 #include <math.h>
 #include "spinboxdelegate.h"
 #include "dialogshowfunc.h"
+#include "funcinputvalidator.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
     spinBoxDelegate = new SpinBoxDelegate(0, 1);
     table->setItemDelegate(spinBoxDelegate);
     on_radioButton_table_toggled(true);
+    ui->lineEdit->setValidator(new FuncInputValidator());
     update_table();
 }
 
@@ -88,20 +90,20 @@ void MainWindow::on_radioButton_table_toggled(bool checked)
 // Диз’юнктивна довершена нормальна форма
 void MainWindow::on_btn_DDNF_clicked()
 {
-    Expr rootExpr = getFuncFromTable();
-    LogicFunction func(&rootExpr);
+    Expr *rootExpr = getFuncFromTable();
+    LogicFunction *func = new LogicFunction(rootExpr);
     QString title = QString(tr("ДДНФ"));
-    DialogShowFunc *dial = new DialogShowFunc(title, &func, this);
+    DialogShowFunc *dial = new DialogShowFunc(title, func, this);
     dial->show();
 }
 
 // Кон’юнктивна довершена нормальна форма
 void MainWindow::on_btn_DKNF_clicked()
 {
-    Expr rootExpr = getFuncFromTable(1);
-    LogicFunction func(&rootExpr);
+    Expr *rootExpr = getFuncFromTable(1);
+    LogicFunction *func = new LogicFunction(rootExpr);
     QString title = QString(tr("ДКНФ"));
-    DialogShowFunc *dial = new DialogShowFunc(title, &func, this);
+    DialogShowFunc *dial = new DialogShowFunc(title, func, this);
     dial->show();
 }
 
@@ -110,23 +112,42 @@ void MainWindow::on_btn_DKNF_clicked()
  * @param type 0 - DDNF, 1 - DKNF, default 0
  * @return logic function expression
  */
-Expr MainWindow::getFuncFromTable(int type)
+Expr *MainWindow::getFuncFromTable(int type)
 {
-    Expr rootExpr(type?MULT:SUMM);
+    Expr *rootExpr = new Expr(type?MULT:SUMM);
 
     int v;
     for (int i = 0;i < table_rows;i++) {
         v = table->item(i, table_size)->text().toInt();
         if (v == 0 && type == 0) continue;
         else if (v == 1 && type == 1) continue;
-        Expr expr(type?SUMM:MULT);
+        Expr *expr = new Expr(type?SUMM:MULT);
         for (int j = 0;j < table_size;j++) {
             v = table->item(i, j)->text().toInt();
-            Expr atomExpr(ATOM, v ? (type?true:false) : (type?false:true), j + 1);
-            expr.addChild(atomExpr);
+            Expr *atomExpr = new Expr(ATOM, v ? (type?true:false) : (type?false:true), j + 1);
+            expr->addChild(atomExpr);
         }
-        rootExpr.addChild(expr);
+        rootExpr->addChild(expr);
     }
 
     return rootExpr;
+}
+
+/**
+ * @brief MainWindow::getFuncFromText
+ * @return parsed logic function expression with root expr type SUMM
+ */
+Expr *MainWindow::getFuncFromText()
+{
+    Expr *rootExpr = new Expr(SUMM);
+    return rootExpr;
+}
+
+void MainWindow::on_btn_Nelson_clicked()
+{
+    Expr *rootExpr  = ui->radioButton_table->isChecked() ? getFuncFromTable() : getFuncFromText();
+    LogicFunction *func = new LogicFunction(rootExpr);
+    QString title = QString(tr("СкДНФ з ДНФ"));
+    DialogShowFunc *dial = new DialogShowFunc(title, func, this);
+    dial->show();
 }

@@ -19,6 +19,8 @@ public:
 private slots:
     void on_btnThanks_clicked();
 
+    void on_DialogShowFunc_finished(int result);
+
 private:
     Ui::DialogShowFunc *ui;
     LogicFunction *logicFunc;

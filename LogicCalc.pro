@@ -17,12 +17,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     spinboxdelegate.cpp \
     logicfunction.cpp \
-    dialogshowfunc.cpp
+    dialogshowfunc.cpp \
+    funcinputvalidator.cpp
 
 HEADERS  += mainwindow.h \
     spinboxdelegate.h \
     logicfunction.h \
-    dialogshowfunc.h
+    dialogshowfunc.h \
+    funcinputvalidator.h
 
 FORMS    += mainwindow.ui \
     dialogshowfunc.ui
