@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.web.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logiccalc.MainController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="200.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <TabPane tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab fx:id="tabTable" onSelectionChanged="#tableTabSelectionChanged" text="Truth table">
+               <content>
+                  <AnchorPane prefHeight="148.0" prefWidth="357.0">
+                     <children>
+                        <GridPane layoutX="40.0" layoutY="61.0" prefHeight="337.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                              <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" GridPane.halignment="CENTER">
+                                 <children>
+                                    <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" GridPane.halignment="CENTER">
+                                       <children>
+                                          <Button fx:id="btnMinus" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnMinusClicked" prefWidth="30.0" text="-">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Label fx:id="labelNums" alignment="CENTER" maxHeight="1.7976931348623157E308" prefWidth="50.0" text="2">
+                                             <font>
+                                                <Font size="19.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="btnPlus" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnPlusClicked" prefWidth="30.0" text="+">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Logic expression">
+               <content>
+                  <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+                     <children>
+                        <TextArea fx:id="textAreaExpr" layoutX="57.0" layoutY="14.0" prefHeight="337.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </TextArea>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+      <GridPane GridPane.rowIndex="1">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Hyperlink fx:id="hyperlinkAuthor" onAction="#onAuthorLinkClicked" text="LogicCalc" />
+            <Button fx:id="btnHelp" mnemonicParsing="false" onAction="#onHelpClicked" text="Help" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Button>
+         </children>
+      </GridPane>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+         <children>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <VBox maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="190.0">
+               <children>
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Actions">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnDdnf" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onDdnfClicked" text="DDNF">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnDknf" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onDknfClicked" text="DKNF">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnSimplify" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onSimlifyClicked" text="Simplify">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <ToggleButton fx:id="toggleBtnLatex" maxWidth="1.7976931348623157E308" minWidth="170.0" mnemonicParsing="false" onAction="#latexToggled" text="LaTeX format">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+               </HBox.margin>
+            </ToggleButton>
+         </children>
+      </HBox>
+   </children>
+</GridPane>
